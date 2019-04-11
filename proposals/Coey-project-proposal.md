@@ -1,6 +1,6 @@
 # Levi Coey Project Proposal
-BACKGROUND
+## BACKGROUND
 I work for an organization that conducts experimental testing for a variety of customers.  A part of testing consists of determining powder loads for the tests to ensure the target is impacted at the test parameter velocity; this effort can take a couple days.  Currently, the method of honing in on the required loads is guessing on the powder load required, test, adjust, and repeat.  There is research that suggests the many factors that influence gun powder results (e.g., humidity, temperature, times the round has been used).  Furthermore, not every program test setup is exposed the the same dependent variables; this prevents the user using all previous test data to make new assumptions. 
 
-PROPOSAL
+## PROPOSAL
 For the class, I will create a program that allows a test team to better predict the exact gun powder load for a test parameter.  To accomplish this, the team will input all variables that are measurable that they believe could be affecting the performance of the test.  The program will then analyze the data and determine the factors that are contributing the most and eleminate any that are not influencing the test.  A variety of related past data and current test data will then be used to teach the program, using machine learning, the structure of the system.  Following this, a handfulll of tests will be conducted to check the parameters guess by the program.  It is my focus to develop a program that will cut down on initial test setup and increase the performance of the test through successfully aquiring test results that are closer to the target test parameter
