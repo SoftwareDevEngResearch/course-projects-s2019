@@ -15,29 +15,31 @@ OpenStreetMap (OSM) is a crowdsourced mapping project to construct an online map
 In 2016 a joint MIT/King Abdulaziz City for Science and Technology (KACST) team published an analysis of the impacts of a prospective transit network for Riyadh, Saudi Arabia \[1\]. They aimed to develop methods to analyze the effects different transportation layers have on the overall transportation landscape. They used road data from the Arriyadh Development Authority for their single-mode street network and added a network layer representing the proposed transit system. Their analysis ultimately showed the difficulty of getting transit right, but introduced methods to start working with multi-modal transportation in other contexts.
 
 While Sidewalk Labs and the MIT/KACST team used proprietary data sources to construct their network layers, such isn't necessary with OSM. OSM has several API routes for accessing data, with the Overpass API optimized for data downloads from OSM \[2\]. By defining an area of interest with a geographic bounding box and selecting desired modes, a multiplex transportation network can be created from OSM data.
+
+## Anomaly Detection for Mode-Specific Counter
+
+Most transportation mode counting mechanisms (e.g., Automated Passenger Counters (APC) or ground-laid pneumatic tubes) are created to detect and count a specific transportation mode. As counters stray from calibration the resulting miscounts are slow to be identified by transit agencies for the change may be assumed to be a change in actual mode participants. With newly-developed mode-agnostic data sources for human mobility, a secondary data source may be employed to identify potential degradation in data quality of mode-specific counters. By identifying mode choices in the second dataset, mode users present in that dataset can be counted. By employing long short-term memory networks as unsupervised multivariate anomaly detection mechanisms, it is possible to identify when the relation between the two data sources' counts changes. This allows transportation organizations to intervene when the framework detects an anomaly and data integrity needs to be investigated. It also allows the saving of resources for no longer will it be necessary to schedule periodic inspections to ensure counts remain accurate.
  
 ### Components
-- Text-based front-end for inputting desired network parameters
-- Back-end will:
-    + Generate and execute API GET for map data
-    + Parse data based on desired modes
-    + Produce mode-specific network layers
-    + Check layers for intra- and inter-connectivity
++ Generate multiplex transportation network graph
+    - Uses OSMnx to download single-mode graph layers
++ Import single-mode counter datasets
+    - Identify node associated to count
+    - Produce time-series for mode-node pair
++ Train LSTM network to identifiy anomalies in relationship of multiple same-mode time-series
+    - Uses Keras for LSTM module
 
 ### Inputs
-- Bounding coordinates
-- Desired modes
+- Mobility datasets
 
 ### Outputs
-- Network nodes (including inter-layer transfer parameters)
-- Network edges (including mode-specific parameters/weights)
-- Formatting will initially be designed for analysis with the [networkx](https://networkx.github.io) package, but as necessary/time permits will be expanded as user selectable to allow integration with more efficient packages like [graph-tool](https://graph-tool.skewed.de)
+- Time-series report of anomaly probability
 
 ## Potential Users
-The package will exist as a starting point for any party looking to investigate the flow of human mobility in multi-modal environments using open source data. The analytical pipeline created for the Riyadh analysis is [available](https://github.com/PhilChodrow/riyadh_multiplex) and could be adapted to other environments using the newly generated multiplex network.
+The package will be useful to transportation providers using any single-mode counting mechanisms. It will require a secondary data source containing some sample of the target population, but those are increasing in availability as new exploits are discovered.
 
 ## Own Past Work
-I have previously pulled OSM data for generation of a single-layer mode-specific network for transportation analysis. That effort remained preliminary, and this package will further develop the approach for multi-modal networks so future research will not require bespoke network generation.
+I have previously pulled OSM data for generation of a single-layer mode-specific network for transportation analysis. I have acquired mode-specific and mode-agnostic mobility datasets for an overlapping geographic area. The datasets have known periods of anomalous counts, so empirical testing of the framework will be possible.
 
 ## References
 [1]P. S. Chodrow, Z. al-Awwad, S. Jiang, and M. C. González, “Demand and Congestion in Multiplex Transportation Networks,” PLOS ONE, vol. 11, no. 9, p. e0161738, Sep. 2016.
