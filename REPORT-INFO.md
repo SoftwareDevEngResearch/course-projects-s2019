@@ -31,6 +31,7 @@ or using BibTeX:
 }
 ```
 
+Please submit the report as a PDF.
 I recommend using LaTeX and formatting this like a typical journal article submission (e.g., using the Elsevier article class), but you can use what you prefer. The idea behind this report is that it could serve as the seed for a later software paper about your package.
 
 Your report grade will be based on how you meet the above content items, as well as readability of both your writing and any figures.
