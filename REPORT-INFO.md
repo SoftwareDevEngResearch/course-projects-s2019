@@ -14,7 +14,7 @@ Your report should include the following sections (you can modify the titles as 
 
 5. Conclusions and future work: summarize the report, describe the overall functionality of your software. How can this software evolve, what else would you want to add to it moving forward? (Or what would you want others to add to it?) How do you see this being used?
 
-There is no length requirement, but generally 5–15 pages would be appropriate for this amount of content. (Longer is not necessarily better.) 
+There is no length requirement, but generally 5–10 pages would be appropriate for this amount of content. (Longer is not necessarily better.) 
 
 **Make sure you cite your software** as we talked about in class---use Zenodo to archive the final version of your software and then use the resulting DOI to cite. You can format the reference like this (replace elements with the specifics of your software: 
 
